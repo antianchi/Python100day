@@ -82,3 +82,12 @@ print("计算圆的周长和面积")
 radius = float(input("请输入圆的半径："))
 p = 2 * math.pi * radius
 s = math.pi * radius * radius
+print("圆的半径：")
+print(radius,"周长：",p,"面积：",s)
+
+print("判断是否是闰年")
+year = int(input("输入年份："))
+# 如果代码太长写成一行不便于阅读 可以使用\或()折行
+is_leap = (year % 4 == 0 and year % 100 != 0 or
+           year % 400 == 0)
+print(is_leap)
