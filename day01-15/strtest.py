@@ -61,12 +61,6 @@ def main():
     print(str3.strip())
 
 
-# 列表操作
-def
-
-
-if __name__ == '__main__' :
-    main()
 
 
 
