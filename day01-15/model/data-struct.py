@@ -272,6 +272,19 @@ def which_day(y,m,d):
             total += days_of_month[i]
         return total + d
 
+# 杨辉三角
+def yhsj():
+    num = int(input("Number of rows:"))
+    yh = [[]] * num
+    for row in range(len(yh)):
+        yh[row] = [None] * (row + 1)
+        for col in range(len(yh[row])):
+            if col == 0 or col == row:
+                yh[row][col] = 1
+            else:
+                yh[row][col] = yh[row -1][col] + yh[row-1][col -1]
+            print(yh[row][col])
+        print()
 
 if __name__ == '__main__':
     listtest()
@@ -302,5 +315,9 @@ if __name__ == '__main__':
     print(which_day(2018, 1, 1))
     print(which_day(2016, 3, 1))
     print(which_day(2016, 2, 1))
+
+
+    print("杨辉三角-----------------------")
+    yhsj()
 
 
