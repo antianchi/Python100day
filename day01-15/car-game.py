@@ -17,18 +17,18 @@ sys.setdefaultencoding('utf8')
 class Card(object):
     """一张牌"""
 
-    def __init__(self,suite,face):
-        self._suite  = suite
+    def __init__(self, suite, face):
+        self._suite = suite
         self._face = face
-    
+
     @property
     def face(self):
         return self._face
 
     @property
     def suite(self):
-        return self.suite
-    
+        return self._suite
+
     def __str__(self):
         if self._face == 1:
             face_str = 'A'
@@ -41,32 +41,34 @@ class Card(object):
         else:
             face_str = str(self._face)
         return '%s%s' % (self._suite, face_str)
-    
+
     def __repr__(self):
         return self.__str__()
 
+
 class Poker(object):
     """一副牌"""
+
     def __init__(self):
-        self._cards = [Card(suite,face) for suite in '♠♥♣♦' for face in range(1,14)]
+        self._cards = [Card(suite, face) for suite in '♠♥♣♦' for face in range(1, 14)]
         self._current = 0
-    
+
     @property
     def cards(self):
         return self._cards
-    
+
     def shuffle(self):
         """洗牌随机乱序"""
         self._current = 0
         random.shuffle(self._cards)
-    
+
     @property
     def next(self):
         """发牌"""
         card = self._cards[self._current]
-        self._current+=1
+        self._current += 1
         return card
-    
+
     @property
     def has_next(self):
         """还you没有牌"""
@@ -74,35 +76,38 @@ class Poker(object):
 
 class Player(object):
     """玩家"""
-    def __init__(self,name):
-        self._name
+
+    def __init__(self, name):
         self._cards_on_hand = []
-    
+        self._name = name
+
     @property
     def name(self):
         return self._name
-    
 
-    @property 
+    @property
     def cards_on_hand(self):
         return self._cards_on_hand
 
-    def get(self,card):
+    def get(self, card):
         """摸牌"""
         self._cards_on_hand.append(card)
 
-    def arrange(self,card_key):
+    def arrange(self, card_key):
         """整理玩家手上的牌"""
         self._cards_on_hand.sort(key=card_key)
 
 # 排序规则，先根据点数排序
+
+
 def get_key(card):
-    return (card.suite,card.face)
+    return (card.suite, card.face)
+
 
 def main():
     p = Poker()
     p.shuffle()
-    players = [Player('东邪'),Player('西毒'),Player('南帝'),Player('北丐')]
+    players = [Player(' 东邪'), Player(' 西毒'), Player(' 南帝'), Player(' 北丐')]
     for _ in range(13):
         for player in players:
             player.get(p.next)
@@ -111,10 +116,6 @@ def main():
         player.arrange(get_key)
         print(player.cards_on_hand)
 
+
 if __name__ == '__main__':
     main()
-
-
-
-
-    
