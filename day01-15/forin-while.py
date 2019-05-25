@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # 不换行，此导入必须放在首行
 from __future__ import print_function
-import sys
+
 import random
+import sys
 
 # xun找水仙花数
 for i in range(100,1000):
