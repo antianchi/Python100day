@@ -3,7 +3,7 @@
 Author: antch
 Email: atc00@foxmail.com
 
-date: 2019/5/25 13:26
+date: 2019/5/25 22:51
 desc: 扑克游戏.
 """
 
@@ -50,7 +50,7 @@ class Poker(object):
     """一副牌"""
 
     def __init__(self):
-        self._cards = [Card(suite, face) for suite in '♠♥♣♦' for face in range(1, 14)]
+        self._cards = [Card(suite, face) for suite in {" ♠" ," ♥"," ♣", " ♦"} for face in range(1, 14)]
         self._current = 0
 
     @property
@@ -118,4 +118,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print(' 你好')
     main()
