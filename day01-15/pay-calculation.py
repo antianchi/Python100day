@@ -41,5 +41,70 @@ class Manager(Employee):
 
     def get_salary(self):
         return 15000.0
+
+class Programmer(Employee):
+    """程序员"""
+
+    def __init__(self,name,working_hour = 0):
+        super(Programmer,self).__init__(name)
+        self._working_hour = working_hour
+    
+    @property
+    def working_hour(self):
+        return self._working_hour
+    
+    @working_hour.setter
+    def working_hour(self,working_hour):
+        self._working_hour = working_hour
+    
+    def get_salary(self):
+        return 150.0 * self._working_hour
+
+class SaleMan(Employee):
+    """销售员"""
+
+    def __init__(self, name,sales = 0):
+        super(SaleMan,self).__init__(name)
+        self._sales = sales
+    
+    @property
+    def sales(self):
+        return self._sales
+    
+    @sales.setter
+    def sales(self,sales):
+        self._sales = sales if sales > 0 else 0
+    
+    def get_salary(self):
+        return 1200 + self.sales * 0.05
+    
+
+def main():
+
+    ems = [
+        Manager(' 刘备'),
+        Programmer(' 张飞'),
+        Manager(' 曹操'),
+        SaleMan(' 荀彧'),
+        SaleMan(' 吕布'),
+         Programmer(' 张辽'),
+        Programmer(' 赵云')
+    ]
+
+    for e in ems:
+        if isinstance(e,Programmer):
+            e.working_hour = int(input('请输入%s本月工作时间: ' % e.name))
+        elif isinstance(e,SaleMan):
+            e.sales = int(input('请输入%s本月的销售额：' % e.name))
+        # 同样是接收get_salary这个消息但是不同的员工表现出了不同的行为(多态)
+        print('%s本月工资为: ￥%s元' %
+              (e.name, e.get_salary()))
+
+
+if __name__ == '__main__':
+    main()
+    
+
+
     
     
