@@ -6,7 +6,7 @@
 @Email: atc00@foxmail.com
 @Date: 2019-05-27 10:06:03
 @LastEditors: antch
-@LastEditTime: 2019-05-27 11:05:24
+@LastEditTime: 2019-05-27 11:16:06
 @Description: 验证输入用户名和QQ号是否有效并给出对应的提示信息。
 要求：用户名必须由字母、数字或下划线构成且长度在6~20个字符之间，
 QQ号是5~12的数字且首位不能为0.
