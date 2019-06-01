@@ -24,6 +24,7 @@ def a1():
         for y in range(33):
             # Z 表示只数
             z = 100 -x -y
+         
             if 5 * x + 3 * y +  z // 3 == 100 and z % 3 == 0:
                 print(x,y,z)
 
