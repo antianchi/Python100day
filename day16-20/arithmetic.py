@@ -87,6 +87,29 @@ def bin_search(items,key):
             return mid
     return -1
 
+def quick_sort(origin_items,comp=lambda x,y: x<=y):
+    """
+    快速排序 - 选择枢轴对元素进行划分，左边都比枢轴小右边都比枢轴大
+    """
+    items = origin_items[:]
+    _quick_sort(items,0,len(items)-1,comp)
+    return items 
+
+def _quick_sort(items,start,end,comp):
+    if start<end:
+        pos = _partition(items,start,end,comp)
+        _quick_sort(items,start,pos-1,comp)
+        _quick_sort(items,pos+1,end,comp)
+
+def _partition(items,start,end,comp):
+    pivot = items[end]
+    i = start - 1
+    for j in range(start,end):
+        if comp(items[j],pivot):
+            i+=1
+            items[i],items[j] = items[j],items[i]
+    items[i+1],items[end] = items[end],items[i+1]
+    return i+1
 
 
 
@@ -96,13 +119,17 @@ def main():
     a = [1,3,2,6,4]
     sa = select_sort(a)
     print('原始数组：',a)
-    print('已经排序的数组：',sa)
+    print("-------选择排序-------")
+    print(sa)
     print("-------冒泡排序-------")
     sa1 = bubble_sort(a)
-    print('冒泡排序结果：',sa1)
+    print(sa1)
     print("-------归并排序算法-------")
     sa2 = merge_sort(a)
     print(sa2)
+    print("-------快速排序算法-------")
+    sa3 = quick_sort(a)
+    print(sa3)
 
 
     
