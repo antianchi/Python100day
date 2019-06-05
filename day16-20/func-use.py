@@ -43,6 +43,7 @@ global和nonlocal关键字的作用
 from time import time,sleep
 from functools import wraps
 import random
+from threading import Lock
 
 
 def record_time(func):
@@ -161,6 +162,42 @@ def index():
     print("welcome to index page")
 
 
+# 用装饰器来实现单例模式
+def singleton(clc):
+    """
+    非线程安全
+    """
+    """装饰类的装饰器"""
+    instances={}
+
+    @wraps(clc)
+    def wrapper(*args,**kwargs):
+        if clc not in instances:
+            instances[clc] = clc(*args,**kwargs)
+        return instances[clc]
+    return wrapper
+
+@singleton
+class President():
+    """总统（单例类）"""
+    pass
+
+def singleton2(cls):
+    """线程安全的单例装饰器"""
+    instances = {}
+    locker = Lock()
+
+    @wraps(cls)
+    def wrapper(*args,**kwargs):
+        if cls not in instances:
+            with locker:
+                if cls not in instances:
+                   instances[cls] =cls(*args,**kwargs)
+        return instances[cls]
+    return wrapper
+
+
+
 if __name__ == '__main__':
     print('------------无参数装饰器--------------')
     index = outer(index)  # 这里返回的是inner的地址，并重新赋值给index
@@ -183,4 +220,12 @@ if __name__ == '__main__':
     haha("nihao你好，我是哈哈，是使用@ 模式的")
     print('---')
     haha2("nihao你好》》》》》》》")
+
+    print("------------单例模式----------")
+    p1 = President()
+    p2 = President()
+
+    print("p1.id:",id(p1))
+    print("p2.id:",id(p2))
+    
 
